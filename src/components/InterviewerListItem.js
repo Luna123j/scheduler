@@ -10,7 +10,7 @@ function InterviewerListItem(props){
   )
   
 
- return (<li onClick={()=>{props.setInterviewer(props.id)}} className={interviwerClass}>
+ return (<li onClick={props.setInterviewer} className={interviwerClass}>
  <img
    className="interviewers__item-image"
    src={props.avatar}
