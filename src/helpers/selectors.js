@@ -18,4 +18,8 @@ function getInterview(state, interview) {
   return filteredInterview;
 }
 
-export { getAppointmentsForDay, getInterview };
+function getInterviewersForDay(){
+
+}
+
+export { getAppointmentsForDay, getInterview, getInterviewersForDay };
