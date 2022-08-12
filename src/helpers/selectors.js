@@ -18,8 +18,16 @@ function getInterview(state, interview) {
   return filteredInterview;
 }
 
-function getInterviewersForDay(){
+function getInterviewersForDay(state, day) {
 
+  const getInterviewersId = state.days.filter(d => d.name === day);
+  const filteredInterviewer = [];
+  if (getInterviewersId.length > 0) {
+    getInterviewersId[0].interviewers.forEach((id) => {
+      filteredInterviewer.push(state.interviewers[id]);
+    })
+  }
+  return filteredInterviewer;
 }
 
 export { getAppointmentsForDay, getInterview, getInterviewersForDay };

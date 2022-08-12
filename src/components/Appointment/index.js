@@ -23,7 +23,7 @@ function Appointment(props) {
         interviewer={props.interview.interviewer}
       />
     )}
-    {mode === CREATE && <Form student={props.student} interviewer={props.interviewer} interviewers={[]} onCancel={() => back()} onSave={() => console.log("onSave")} />}
+    {mode === CREATE && <Form student={props.student} interviewer={props.interviewer} interviewers={props.interviewers} onCancel={() => back()} onSave={() => console.log("onSave")} />}
 
   </article>)
 }
