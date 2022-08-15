@@ -6,11 +6,14 @@ import Empty from "./Empty";
 import Form from "./Form";
 import { useVisualMode } from "  hooks/useVisualMode";
 import Status from "./Status";
+import Confirm from "./Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVE = "SAVE";
+const DELETE = "DELETE"
+const CONFIRM = "CONFIRM"
 function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -24,6 +27,14 @@ function Appointment(props) {
     props.bookInterview(props.id, interview).then(() => { transition(SHOW) });
   }
 
+  function remove() {
+
+    transition()
+    transition(DELETE);
+    props.cancelInterview(props.id).then(()=>{transition(EMPTY)})
+  }
+
+  console.log("##props in appoinment",props.interview)
 
   return (<article className="appointment">
     <Header time={props.time} />
@@ -32,6 +43,7 @@ function Appointment(props) {
       <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
+        onDelete={()=>transition(CONFIRM)}
       />
     )}
     {mode === CREATE && <Form
@@ -41,6 +53,10 @@ function Appointment(props) {
       onCancel={() => back()}
       onSave={save} />}
     {mode === SAVE && <Status message="Saving" />}
+    {mode === DELETE && <Status message="Deleting" />}
+    {mode === CONFIRM && <Confirm onCancel={()=>transition(SHOW,true)} onConfirm={remove} message="Are you sure you would like to delete this appoinment?" />}
+
+    
 
   </article>)
 }
