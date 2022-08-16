@@ -11,10 +11,10 @@ export default function useApplicationData() {
       case SET_DAY:
         return {...state,day:action.day}
       case SET_APPLICATION_DATA:
-        return { ...state, days:[...action.days] ,appointments:{...action.appointments},interviewers:{...action.interviewers}}
+        return { ...state, days:action.days ,appointments:action.appointments,interviewers:action.interviewers}
       case SET_INTERVIEW: {
         return {...state,appointments:{...state.appointments,[action.id]: {...state.appointments[action.id],
-              interview: { ...action.interview }}}}
+              interview: action.interview}}}
       }
       default:
         throw new Error(
@@ -67,7 +67,7 @@ export default function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        state.days.filter((d) => { if (d.name === state.day) d.spots -=1 });
+        state.days.filter((d) => { if (d.name === state.day) d.spots -=1 });//need to fix this for edit
         // const days=state.days;
         // setState({ ...state, days });
         // setState({ ...state, appointments });
