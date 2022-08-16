@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
-
+  const SET_DAY = "SET_DAY";
+  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+  const SET_INTERVIEW = "SET_INTERVIEW";
+  
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -32,20 +35,15 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    // const spots = 0;
-    
 
-    // const day ={ 
-    //   ...state.day
-    // }
-    // const days={
-    //   ...state.days[day],spots:spots
-    // }
-    // console.log(days)
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        setState({ ...state ,appointments });
+        state.days.filter((d) => { if (d.name === state.day) d.spots -=1 });
+        const days=state.days;
+        setState({ ...state, days });
+        setState({ ...state, appointments });
+        // console.log("*****************",state.days)
       }
       )
   }
@@ -63,7 +61,12 @@ export default function useApplicationData() {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`, { interview: null })
       .then(() => {
+        state.days.filter((d) => { if (d.name === state.day) d.spots += 1});
+        const days=state.days;
+        setState({ ...state, days });
         setState({ ...state, appointments });
+        // console.log("*****************",state.days)
+
       }
       )
 
