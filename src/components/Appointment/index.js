@@ -4,7 +4,7 @@ import Show from "./Show";
 import Header from "./Header";
 import Empty from "./Empty";
 import Form from "./Form";
-import { useVisualMode } from "  hooks/useVisualMode";
+import { useVisualMode } from "hooks/useVisualMode";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";

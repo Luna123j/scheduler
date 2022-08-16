@@ -19,7 +19,7 @@ function getInterview(state, interview) {
 }
 
 function getInterviewersForDay(state, day) {
-  console.log("selector",state,day)
+  // console.log("selector",state,day)
 
   const getInterviewersId = state.days.filter(d => d.name === day);
   const filteredInterviewer = [];
