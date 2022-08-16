@@ -37,8 +37,6 @@ function Appointment(props) {
     props.cancelInterview(props.id).then(() => transition(EMPTY)).catch(error=>transition(ERROR_DELETE,true));
   }
 
-  console.log("##props in appoinment", props.interview)
-
   return (<article className="appointment">
     <Header time={props.time} />
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
