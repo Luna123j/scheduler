@@ -14,7 +14,7 @@ export default function useApplicationData() {
         return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
       case SET_INTERVIEW: {
         return {
-          ...state, appointments: {
+          ...state,days: action.days, appointments: {
             ...state.appointments, [action.id]: {
               ...state.appointments[action.id],
               interview: action.interview
@@ -78,25 +78,26 @@ export default function useApplicationData() {
   }
 
   function bookInterview(id, interview) {
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: { ...interview }
-    // };
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        state.days.filter((d) => { if (d.name === state.day) d.spots -= 1 });//need to fix this for edit
+        // state.days.filter((d) => { if (d.name === state.day) d.spots -= 1 });//need to fix this for edit
         // const days=state.days;
         // setState({ ...state, days });
         // setState({ ...state, appointments });
-        dispatch({ type: SET_INTERVIEW, id, interview });
-        const days=updateSpots(state, state.appointments)
-        // console.log(days)
+        // updateSpots(state,appointments)
+        const days = updateSpots(state, appointments)
+        console.log(days)
         // dispatch({ type: SET_APPLICATION_DATA, days: days});
+        dispatch({ type: SET_INTERVIEW, id, interview, days });
         // console.log("*****************",state)
 
       }
@@ -104,24 +105,24 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: null
-    // };
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
 
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-        state.days.filter((d) => { if (d.name === state.day) d.spots += 1 });
+        // state.days.filter((d) => { if (d.name === state.day) d.spots += 1 });
         // const days=state.days;
         // setState({ ...state, days });
         // setState({ ...state, appointments });
-
-        dispatch({ type: SET_INTERVIEW, id, interview: null })
+        const days = updateSpots(state, appointments)
+        dispatch({ type: SET_INTERVIEW, id, interview: null,days })
 
       }
       )
