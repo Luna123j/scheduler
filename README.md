@@ -2,7 +2,18 @@
 
 Interview Scheduler is a full stack web application built with React. It allows users check availiability of interview appointment and book new interview with flexibility.
 
-## Dependencies
+## Dependencies/devDependencies
+
+- axios
+- classnames
+- normalize.css
+- react
+- react-dom
+- react-scripts
+- @testing-library/react-hooks
+- react-test-renderer
+- prop-types
+- sass
 
 ## Setup
 
