@@ -58,8 +58,8 @@ function Appointment(props) {
     {mode === DELETE && <Status message="Deleting" />}
     {mode === CONFIRM && <Confirm onCancel={() => back()} onConfirm={remove} message="Are you sure you would like to delete this appoinment?" />}
     {mode === EDIT && <Form
-      student={props.student}
-      interviewer={props.interviewer}
+      student={props.interview.student}
+      interviewer={props.interview.interviewer.id}
       interviewers={props.interviewers}
       onCancel={() => back()}
       onSave={save}
