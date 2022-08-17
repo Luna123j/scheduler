@@ -8,6 +8,7 @@ export default function DayListItem(props) {
     'day-list__item--selected': props.selected,
     'day-list__item--full': !props.spots
   });
+
   const formatSpots = ()=>{
     if(props.spots === 0){
       return 'no spots remaining'
@@ -18,6 +19,7 @@ export default function DayListItem(props) {
       return `${props.spots} spots remaining`
     }
   }
+  
   return (
     <li className = {dayClass} data-testid = "day">
       <h2 onClick={()=>{props.setDay(props.name)}} className="text--regular">{props.name}</h2> 

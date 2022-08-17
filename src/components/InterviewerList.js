@@ -19,6 +19,7 @@ function InterviewerList (props){
 </section>)
 }
 
+//the props of interviewers must an array
 InterviewerList.propTypes={
   interviewers: PropTypes.array.isRequired
 };

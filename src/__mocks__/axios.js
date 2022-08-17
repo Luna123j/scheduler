@@ -1,3 +1,5 @@
+//mock api action build for cypress test
+
 const fixtures = {
   days: [
     {

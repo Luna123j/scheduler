@@ -2,6 +2,7 @@ const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
 
+//reducer hook
 export default function reducer(state, action) {
   switch (action.type) {
     case SET_DAY:
@@ -25,6 +26,7 @@ export default function reducer(state, action) {
   }
 }
 
+//export the three states
 export {
   SET_DAY,
   SET_APPLICATION_DATA,
