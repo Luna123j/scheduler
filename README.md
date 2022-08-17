@@ -46,11 +46,11 @@ npm run cypress
 
 ### Screenshots of main view
 
-!["Screenshots of main view"](https://github.com/Luna123j/scheduler/blob/master/docs/main_view.png)
+!["Screenshots of main view"](https://github.com/Luna123j/scheduler/blob/master/doc/main_view.png)
 
 ### Screenshots of add a new interview appointment
 
-!["Screenshots of add a new interview appointment"](https://github.com/Luna123j/scheduler/blob/master/docs/main_view_when_add_new_interview.png)
+!["Screenshots of add a new interview appointment"](https://github.com/Luna123j/scheduler/blob/master/doc/main_view_when_add_new_interview.png)
 
 
 
