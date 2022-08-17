@@ -89,17 +89,8 @@ export default function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
       .then(() => {
-        // state.days.filter((d) => { if (d.name === state.day) d.spots -= 1 });//need to fix this for edit
-        // const days=state.days;
-        // setState({ ...state, days });
-        // setState({ ...state, appointments });
-        // updateSpots(state,appointments)
         const days = updateSpots(state, appointments)
-        console.log(days)
-        // dispatch({ type: SET_APPLICATION_DATA, days: days});
         dispatch({ type: SET_INTERVIEW, id, interview, days });
-        // console.log("*****************",state)
-
       }
       )
   }
@@ -117,13 +108,9 @@ export default function useApplicationData() {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then(() => {
-        // state.days.filter((d) => { if (d.name === state.day) d.spots += 1 });
-        // const days=state.days;
-        // setState({ ...state, days });
-        // setState({ ...state, appointments });
+
         const days = updateSpots(state, appointments)
         dispatch({ type: SET_INTERVIEW, id, interview: null,days })
-
       }
       )
 
