@@ -37,6 +37,10 @@ function Appointment(props) {
     props.cancelInterview(props.id).then(() => transition(EMPTY)).catch(error=>transition(ERROR_DELETE,true));
   }
 
+  function goBack(){
+    back();
+  }
+
   return (<article className="appointment" data-testid="appointment">
     <Header time={props.time} />
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
@@ -52,20 +56,20 @@ function Appointment(props) {
       student={props.student}
       interviewer={props.interviewer}
       interviewers={props.interviewers}
-      onCancel={() => back()}
+      onCancel={goBack}
       onSave={save} />}
     {mode === SAVE && <Status message="Saving" />}
     {mode === DELETE && <Status message="Deleting" />}
-    {mode === CONFIRM && <Confirm onCancel={() => back()} onConfirm={remove} message="Are you sure you would like to delete this appoinment?" />}
+    {mode === CONFIRM && <Confirm onCancel={goBack} onConfirm={remove} message="Are you sure you would like to delete this appoinment?" />}
     {mode === EDIT && <Form
       student={props.interview.student}
       interviewer={props.interview.interviewer.id}
       interviewers={props.interviewers}
-      onCancel={() => back()}
+      onCancel={goBack}
       onSave={save}
     />}
-    {mode ===ERROR_SAVE && <Error message="Error" onClose={()=>{back()}} />}
-    {mode ===ERROR_DELETE && <Error message="Error" onClose={()=>{back()}} />}
+    {mode ===ERROR_SAVE && <Error message="Error" onClose={goBack} />}
+    {mode ===ERROR_DELETE && <Error message="Error" onClose={goBack} />}
 
 
 
