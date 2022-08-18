@@ -37,11 +37,6 @@ npm test
 npm run storybook
 ```
 
-## Running Cypress
-```sh
-npm run cypress
-```
-
 ## Final Product
 
 ### Screenshots of main view
